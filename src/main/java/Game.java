@@ -33,7 +33,7 @@ public class Game {
             players[i] = new GUI_Player(spillernavn,ourPlayers[i].getMoney(),cars[i]);
             gui.getInstance().addPlayer(players[i]);
             gui.getSpecificField(0).setCar(players[i],true);
-
+            gui.getSpecificField(0).setCar(players[i],true);
         }
     }
 
