@@ -7,12 +7,10 @@ public class Game {
     private Player[] ourPlayers;
     private GUI_Player[] players;
     private Dice dice = new Dice();
-    private int numberOfPlayers;
 
     public void createPlayers(){
         String option = gui.getInstance().getUserSelection("Hvor mange spillere?", "2", "3", "4");
         int chosenOption = Integer.parseInt(option);
-        this.numberOfPlayers = chosenOption;
 
         ourPlayers = new Player[chosenOption];
         players = new GUI_Player[chosenOption];
@@ -32,7 +30,7 @@ public class Game {
             ourPlayers[i] = new Player();
             players[i] = new GUI_Player(spillernavn,ourPlayers[i].getMoney(),cars[i]);
             gui.getInstance().addPlayer(players[i]);
-            gui.getSpecificField(0).setCar(players[i],true);
+            //gui.getSpecificField(0).setCar(players[i],true);
             gui.getSpecificField(0).setCar(players[i],true);
         }
     }
@@ -73,5 +71,10 @@ public class Game {
  */
 
 
+    public static void main(String[] args) {
+        GUI_controller gui = new GUI_controller();
+        System.out.println(gui.getSpecificField(0));
+
+    }
 }
 

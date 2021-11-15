@@ -21,8 +21,7 @@ class GUI_controller {
     }
 
     public GUI_Field getSpecificField(int specificFields) {
-        GUI_Field spec = fields.getSpecificField(specificFields);
-        return spec;
+        return fields.getSpecificField(specificFields);
     }
 
 }
