@@ -4,6 +4,8 @@ import java.util.Scanner;
 public class Test3 {
 
     //testing number of players with an array
+    //This is not a productive test, we just tried to see how
+    //the given GUI works.. to get a taste for it
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
