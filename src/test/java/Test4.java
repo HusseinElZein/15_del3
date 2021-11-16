@@ -58,11 +58,6 @@ public class Test4 {
             dice.throwDice();
             board.setDice(dice.getDie1(), dice.getDie2());
             fields[ourPlayers[i].moveToSquare(dice.getDie1(), dice.getDie2())].setCar(players[i], true);
-            if(ourPlayers[i].getSquare() == 0 || ourPlayers[i].getSquare() > 22){
-                board.showMessage(players[i].getName() + " har passeret start, du får 5$");
-                ourPlayers[i].setMoney(5);
-                players[i].setBalance(ourPlayers[i].getMoney());
-            }
             i++;
             i %= chosenOption;
         }
