@@ -7,6 +7,7 @@ public class Fields {
         for (int i = 0; i <= 23; i++) {
             fields[i] = new GUI_Street();
         }
+        jailField();
     }
 
     public GUI_Field[] getFields(){

@@ -57,7 +57,11 @@ public class Test4 {
             fields[ourPlayers[i].getSquare()].setCar(players[i], false);
             dice.throwDice();
             board.setDice(dice.getDie1(), dice.getDie2());
-            fields[ourPlayers[i].moveToSquare(dice.getDie1(), dice.getDie2())].setCar(players[i], true);
+            
+            ourPlayers[i].moveToSquare(dice.getDie1(), dice.getDie2());
+            
+            fields[ourPlayers[i].getSquare()].setCar(players[i], true);
+            
             i++;
             i %= chosenOption;
         }
