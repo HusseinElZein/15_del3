@@ -3,12 +3,10 @@ import gui_fields.*;
 public class Fields {
     GUI_Field[] fields = new GUI_Field[24];
 
-
     public void CreateFields() {
         for (int i = 0; i <= 23; i++) {
             fields[i] = new GUI_Street();
         }
-        jailField();
     }
 
     public GUI_Field[] getFields(){

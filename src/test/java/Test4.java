@@ -13,7 +13,6 @@ public class Test4 {
         for(int i=0; i<=23; i++) {
             fields[i] = new GUI_Street();
         }
-        fields[0] = new GUI_Chance();
 
         GUI_Street testStreet = new GUI_Street();
         testStreet.setTitle("høje gladsaxe");

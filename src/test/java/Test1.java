@@ -13,7 +13,6 @@ public class Test1 {
         System.out.println();
 
         for(int i=0; i<10; i++){
-
             dice.throwDice();
             System.out.print("Player 1: ");
             System.out.println("First die: " + dice.getDie1() + " Second die: " + dice.getDie2() +

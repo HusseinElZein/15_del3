@@ -3,7 +3,7 @@ import gui_main.GUI;
 
 class GUI_controller {
     private static GUI board;
-    private Fields fields = new Fields();
+    private static Fields fields = new Fields();
     private static GUI GUI_instance = null;
 
     private GUI GUI_controller() {
@@ -22,6 +22,13 @@ class GUI_controller {
 
     public GUI_Field getSpecificField(int specificFields) {
         return fields.getSpecificField(specificFields);
+    }
+
+    public static void main(String[] args) {
+
+        GUI_controller gui = new GUI_controller();
+        System.out.println(gui.getSpecificField(0));
+
     }
 
 }
