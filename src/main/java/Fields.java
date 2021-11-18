@@ -185,9 +185,7 @@ public class Fields {
     public void buyField (Player player,GUI_Player players) {
 
         player.setMoney(getFieldRent(player.getSquare()));
-        getField(1).setOwnerName(players.getName());
-        System.out.println(getField(1).getOwnerName());
-
+        getField(player.getSquare()).setOwnerName(players.getName());
     }
 
     public void getOwner () {
@@ -205,6 +203,8 @@ public class Fields {
         GUI_Player players = new GUI_Player("Hussein",player.getMoney(),car);
         player.moveToSquare(1,0);
         field.buyField(player,players);
+
+        System.out.println(field.getField(player.getSquare()).getOwnerName());
 
     }
 
