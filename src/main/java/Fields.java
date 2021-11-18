@@ -186,9 +186,22 @@ public class Fields {
 
         player.setMoney(getFieldRent(player.getSquare()));
         getField(player.getSquare()).setOwnerName(players.getName());
+
+        getField(GUI_Ownable[2]);
+
+        boolean owned = false;
+        getField(player.getSquare());
+        getField().
+
     }
 
     public void getOwner () {
+
+    }
+
+    public GUI_Street isOwned () {
+
+        boolean owned = true;
 
     }
 
