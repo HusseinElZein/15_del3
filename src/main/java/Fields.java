@@ -4,8 +4,8 @@ import java.awt.*;
 import java.lang.reflect.Field;
 
 public class Fields {
-    GUI_Street field1, field2;
     GUI_Field[] fields = new GUI_Field[24];
+    boolean[] isFieldOwned = new boolean[24];
 
     public void CreateFields() {
         for (int i = 0; i <= 23; i++) {
@@ -39,7 +39,7 @@ public class Fields {
     }
 
     public void ownField(){
-        this.field1 = new GUI_Street();
+        GUI_Street field1 = new GUI_Street();
         field1.setTitle("Noerrebro");
         field1.setSubText("Pris: 1₩");
         field1.setBackGroundColor(Color.magenta);
@@ -171,7 +171,6 @@ public class Fields {
 
         GUI_Chance chance4 = new GUI_Chance();
         fields[21] = chance4;
-
     }
 
     public GUI_Street getField(int fieldNumber){
@@ -186,23 +185,14 @@ public class Fields {
 
         player.setMoney(getFieldRent(player.getSquare()));
         getField(player.getSquare()).setOwnerName(players.getName());
-
-        getField(GUI_Ownable[2]);
-
-        boolean owned = false;
-        getField(player.getSquare());
-        getField().
-
+        isFieldOwned[player.getSquare()] = true;
     }
 
     public void getOwner () {
-
     }
 
-    public GUI_Street isOwned () {
-
-        boolean owned = true;
-
+    public boolean isQuestionOwned(Player player) {
+        return isFieldOwned[player.getSquare()];
     }
 
     public static void main(String[] args) {
@@ -214,7 +204,7 @@ public class Fields {
         car.setPrimaryColor(Color.black);
 
         GUI_Player players = new GUI_Player("Hussein",player.getMoney(),car);
-        player.moveToSquare(1,0);
+        player.moveToSquare(2,0);
         field.buyField(player,players);
 
         System.out.println(field.getField(player.getSquare()).getOwnerName());
