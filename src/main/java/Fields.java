@@ -1,8 +1,10 @@
 import gui_fields.*;
 
 import java.awt.*;
+import java.lang.reflect.Field;
 
 public class Fields {
+    GUI_Street field1, field2;
     GUI_Field[] fields = new GUI_Field[24];
 
     public void CreateFields() {
@@ -37,13 +39,13 @@ public class Fields {
     }
 
     public void ownField(){
-        GUI_Street firstField = new GUI_Street();
-        firstField.setTitle("Noerrebro");
-        firstField.setSubText("Pris: 1₩");
-        firstField.setBackGroundColor(Color.magenta);
-        firstField.setRent("-1");
-        firstField.setDescription("");
-        fields[1] = firstField;
+        this.field1 = new GUI_Street();
+        field1.setTitle("Noerrebro");
+        field1.setSubText("Pris: 1₩");
+        field1.setBackGroundColor(Color.magenta);
+        field1.setRent("-1");
+        field1.setDescription("");
+        fields[1] = field1;
 
         GUI_Street secondField = new GUI_Street();
         secondField.setTitle("Holbaek");
@@ -100,20 +102,61 @@ public class Fields {
         eleventhField.setRent("-2");
         fields[11] = eleventhField;
 
-        GUI_Street twelfthField = new GUI_Street();
-        twelfthField.setTitle("Tingbjerg");
-        twelfthField.setSubText("Pris: 2₩");
-        twelfthField.setBackGroundColor(Color.green);
-        twelfthField.setRent("-2");
-        fields[12] = twelfthField;
-
         GUI_Street thirteenthField = new GUI_Street();
-        twelfthField.setTitle("Tingbjerg");
-        twelfthField.setSubText("Pris: 2₩");
-        twelfthField.setBackGroundColor(Color.green);
-        twelfthField.setRent("-2");
-        fields[12] = twelfthField;
+        thirteenthField.setTitle("Thisted");
+        thirteenthField.setSubText("Pris: 3₩");
+        thirteenthField.setBackGroundColor(Color.green);
+        thirteenthField.setRent("-3");
+        fields[13] = thirteenthField;
 
+        GUI_Street fourteenthField = new GUI_Street();
+        fourteenthField.setTitle("Frederikssund");
+        fourteenthField.setSubText("Pris: 3₩");
+        fourteenthField.setBackGroundColor(Color.green);
+        fourteenthField.setRent("-3");
+        fields[14] = fourteenthField;
+
+        GUI_Street fifteenthField = new GUI_Street();
+        fifteenthField.setTitle("Helsingoer");
+        fifteenthField.setSubText("Pris: 3₩");
+        fifteenthField.setBackGroundColor(Color.CYAN);
+        fifteenthField.setRent("-3");
+        fields[16] = fifteenthField;
+
+        GUI_Street field17 = new GUI_Street();
+        field17.setTitle("Hillerød");
+        field17.setSubText("Pris: 3₩");
+        field17.setBackGroundColor(Color.CYAN);
+        field17.setRent("-3");
+        fields[17] = field17;
+
+        GUI_Street field19 = new GUI_Street();
+        field19.setTitle("Valby");
+        field19.setSubText("Pris: 4₩");
+        field19.setBackGroundColor(Color.WHITE);
+        field19.setRent("-4");
+        fields[19] = field19;
+
+        GUI_Street field20 = new GUI_Street();
+        field20.setTitle("Frederiksberg");
+        field20.setSubText("Pris: 4₩");
+        field20.setBackGroundColor(Color.WHITE);
+        field20.setRent("-4");
+        fields[20] = field20;
+
+        GUI_Street field22 = new GUI_Street();
+        field22.setTitle("Gentofte");
+        field22.setSubText("Pris: 5₩");
+        field22.setBackGroundColor(Color.DARK_GRAY);
+        field22.setRent("-5");
+        fields[22] = field22;
+
+        GUI_Street field23 = new GUI_Street();
+        field23.setTitle("Hellerup");
+        field23.setSubText("Pris: 5₩");
+        field23.setBackGroundColor(Color.DARK_GRAY);
+        field23.setRent("-5");
+        fields[23] = field23;
 
     }
     public void chance(){
@@ -122,6 +165,46 @@ public class Fields {
 
         GUI_Chance chance2 = new GUI_Chance();
         fields[9] = chance2;
+
+        GUI_Chance chance3 = new GUI_Chance();
+        fields[15] = chance3;
+
+        GUI_Chance chance4 = new GUI_Chance();
+        fields[21] = chance4;
+
+    }
+
+    public GUI_Street getField(int fieldNumber){
+        return (GUI_Street) fields[fieldNumber];
+    }
+
+    public int getFieldRent (int fieldNumber) {
+        return Integer.parseInt(getField(fieldNumber).getRent());
+    }
+
+    public void buyField (Player player,GUI_Player players) {
+
+        player.setMoney(getFieldRent(player.getSquare()));
+        getField(1).setOwnerName(players.getName());
+        System.out.println(getField(1).getOwnerName());
+
+    }
+
+    public void getOwner () {
+
+    }
+
+    public static void main(String[] args) {
+
+        Fields field = new Fields();
+        field.CreateFields();
+        Player player = new Player();
+        GUI_Car car = new GUI_Car();
+        car.setPrimaryColor(Color.black);
+
+        GUI_Player players = new GUI_Player("Hussein",player.getMoney(),car);
+        player.moveToSquare(1,0);
+        field.buyField(player,players);
 
     }
 
