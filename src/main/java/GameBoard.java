@@ -22,7 +22,7 @@ public class GameBoard {
         jackpot();
     }
 
-    //This is what the teacher wanted; to make a to string method to write out
+    //This is what the teacher wanted; to make a ToString method to write out
     //all our fields
     public String allFieldsToString(){
         StringBuilder builder = new StringBuilder();
