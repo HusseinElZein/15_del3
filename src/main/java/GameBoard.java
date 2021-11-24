@@ -26,7 +26,7 @@ public class GameBoard {
     //all our fields
     public String allFieldsToString(){
         StringBuilder builder = new StringBuilder();
-        for(int i=0; i<23; i++){
+        for (int i=0; i<23; i++) {
             builder.append("field: " + i + " " + fields[i].getTitle() + "\n");
         }
         return builder.toString();
@@ -39,15 +39,15 @@ public class GameBoard {
         System.out.println(gameBoard.allFieldsToString());
     }
 
-    public GUI_Field[] getFields(){
+    public GUI_Field[] getFields() {
         return fields;
     }
 
-    public GUI_Field getSpecificField(int specificField){
+    public GUI_Field getSpecificField (int specificField) {
         return fields[specificField];
     }
 
-    public void jackpot(){
+    public void jackpot() {
         GUI_Street jackpot = new GUI_Street();
         jackpot.setSubText("Faa loese");
         jackpot.setTitle("JACKPOT");
@@ -55,7 +55,7 @@ public class GameBoard {
         fields[12] = jackpot;
     }
 
-    public void jailField(){
+    public void jailField() {
         GUI_Jail visitJail = new GUI_Jail();
         visitJail.setTitle("");
         visitJail.setSubText("Besoeg");
@@ -75,7 +75,7 @@ public class GameBoard {
         fields[0] = go;
     }
 
-    public void ownableFields(String name, String price, Color color, int fieldNumber){
+    public void ownableFields (String name, String price, Color color, int fieldNumber) {
         GUI_Street field = new GUI_Street();
         field.setTitle(name);
         field.setRent(price);
@@ -84,7 +84,7 @@ public class GameBoard {
         fields[fieldNumber] = field;
     }
 
-    public void ownField(){
+    public void ownField() {
         ownableFields("Noerrebro","1",Color.magenta,1);
         ownableFields("Holbaek","1",Color.magenta,2);
         ownableFields("Gladsaxe","1",Color.blue,4);
@@ -103,7 +103,7 @@ public class GameBoard {
         ownableFields("Helleruo","5",Color.DARK_GRAY.brighter(),23);
     }
 
-    public void chance(){
+    public void chance() {
         GUI_Chance chance1 = new GUI_Chance();
         fields[3] = chance1;
 
@@ -117,7 +117,7 @@ public class GameBoard {
         fields[21] = chance4;
     }
 
-    public GUI_Street getField(int fieldNumber){
+    public GUI_Street getField (int fieldNumber) {
         return (GUI_Street) fields[fieldNumber];
     }
 
@@ -134,22 +134,23 @@ public class GameBoard {
         setOwnerOfField(player.getSquare(),player, players);
     }
 
-    public void payToOwner(GUI_Player guiPayer, GUI_Player guiReceiver, Player payer, Player receiver){
+    public void payToOwner (GUI_Player guiPayer, GUI_Player guiReceiver, Player payer, Player receiver) {
         payer.transferMoney((getFieldRent(payer.getSquare())),getOwnerOfField(payer.getSquare()) ,payer);
         guiPayer.setBalance(payer.getMoney());
         guiReceiver.setBalance(receiver.getMoney());
     }
 
-    public void didLandOnChance(Player ourPlayers, GUI_Player players){
+    public void didLandOnChance (Player ourPlayers, GUI_Player players) {
 
         int s = ourPlayers.getSquare();
-        if(s == 3 || s == 9 || s == 15 || s == 21){
+
+        if (s == 3 || s == 9 || s == 15 || s == 21) {
             gui.getInstance().getUserButtonPressed(ourPlayers.getName() + " er landet paa chance, traek et" +
                     " chancekort", "traek");
 
             int randomCard = (int) (Math.random()*8+1);
 
-            switch(randomCard){
+            switch (randomCard) {
                 case 1: card1(ourPlayers,players);
                     break;
                 case 2: card2(ourPlayers,players);
@@ -170,49 +171,49 @@ public class GameBoard {
         }
     }
 
-    public void didLandOnJackpot(Player player, GUI_Player players){
+    public void didLandOnJackpot (Player player, GUI_Player players) {
 
         int s = player.getSquare();
-        if(s==12) {
+        if (s==12) {
             receiveJackpot(player, players);
         }
     }
 
-    public void setJackpotBundle(int plusJackpot){
+    public void setJackpotBundle (int plusJackpot) {
         jackpotBundle += plusJackpot;
     }
 
-    public void receiveJackpot(Player player, GUI_Player players){
-        if(jackpotBundle>0) {
-            gui.getInstance().showMessage(player.getName() + ", du er landet på jackpot! Du modtager " + jackpotBundle
-                    + "₩");
+    public void receiveJackpot (Player player, GUI_Player players) {
+        if (jackpotBundle>0) {
+            gui.getInstance().showMessage(player.getName() + ", du er landet på jackpot! Du modtager "
+                    + jackpotBundle + "₩");
             player.setMoney(jackpotBundle);
             players.setBalance(player.getMoney());
             jackpotBundle = 0;
         }
     }
 
-    public void card1(Player ourPlayers, GUI_Player players){
+    public void card1 (Player ourPlayers, GUI_Player players) {
         gui.getInstance().showMessage(" CHANCE KORT: Betal 1₩ til jackpot");
         ourPlayers.setMoney(-1);
         players.setBalance(ourPlayers.getMoney());
         setJackpotBundle(1);
     }
 
-    public void card2(Player ourPlayers, GUI_Player players){
+    public void card2 (Player ourPlayers, GUI_Player players) {
         gui.getInstance().showMessage("CHANCE KORT: Modtag 2₩ fra kassen");
         ourPlayers.setMoney(2);
         players.setBalance(ourPlayers.getMoney());
     }
 
-    public void card3(Player ourPlayers, GUI_Player players){
+    public void card3 (Player ourPlayers, GUI_Player players) {
         gui.getInstance().showMessage("CHANCE KORT: Ryk to felter frem");
         getSpecificField(ourPlayers.getSquare()).setCar(players,false);
         ourPlayers.moveToSquare(2,0);
         getSpecificField(ourPlayers.getSquare()).setCar(players,true);
     }
 
-    public void card4(Player ourPlayer, GUI_Player players){
+    public void card4 (Player ourPlayer, GUI_Player players) {
         gui.getInstance().showMessage("CHANCE KORT: Ryk frem til start og modtag 2₩");
         getSpecificField(ourPlayer.getSquare()).setCar(players,false);
         ourPlayer.moveToHere(0);
@@ -221,27 +222,27 @@ public class GameBoard {
         players.setBalance(ourPlayer.getMoney());
     }
 
-    public void card5(Player ourPlayers, GUI_Player players){
+    public void card5 (Player ourPlayers, GUI_Player players) {
         gui.getInstance().showMessage(" CHANCE KORT: Betal 2₩ til jackpot");
         ourPlayers.setMoney(-2);
         players.setBalance(ourPlayers.getMoney());
         setJackpotBundle(2);
     }
 
-    public void setOwnerOfField(int fieldNumber, Player player, GUI_Player players){
+    public void setOwnerOfField (int fieldNumber, Player player, GUI_Player players) {
         owner[fieldNumber] = player;
         ownerPlayers[fieldNumber] = players;
     }
 
-    public Player getOwnerOfField(int fieldNumber){
+    public Player getOwnerOfField (int fieldNumber) {
         return owner[fieldNumber];
     }
 
-    public GUI_Player getGuiOwner(int fieldNumber){
+    public GUI_Player getGuiOwner (int fieldNumber) {
         return ownerPlayers[fieldNumber];
     }
 
-    public boolean isPlaceOwned(Player player) {
+    public boolean isPlaceOwned (Player player) {
         return isFieldOwned[player.getSquare()];
     }
 }
