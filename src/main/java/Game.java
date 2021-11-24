@@ -55,7 +55,7 @@ public class Game {
     }
 
     public void checkForLoser(Player ourPlayer){
-        if(ourPlayer.getMoney() < 0) {
+        if(ourPlayer.getMoney() <= 0) {
             gui.getInstance().showMessage(ourPlayer.getName() + " er gaaet bankerot");
             gameEnded = true;
         }
@@ -107,7 +107,7 @@ public class Game {
         if((f==1||f==2||f==2||f==4||f==5||f==7||f==8||f==10||f==11||f==13||f==14||f==16||f==17||f==19
                 ||f==20||f==22||f==23)
                 && gui.getJustFields().isPlaceOwned(ourPlayers) != true
-                && ourPlayers.getMoney()>gui.getJustFields().getFieldRent(ourPlayers.getSquare())){
+                && ourPlayers.getMoney()>(1+gui.getJustFields().getFieldRent(ourPlayers.getSquare()))){
 
             String option = gui.getInstance().getUserSelection(players.getName() + ", vil du købe "
                             + gui.getSpecificField(ourPlayers.getSquare()).getTitle() +
