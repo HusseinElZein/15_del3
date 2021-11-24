@@ -57,6 +57,7 @@ public class Game {
                     }
                 }
             }
+
             ourPlayers[i] = new Player();
             ourPlayers[i].setName(spillernavn);
             players[i] = new GUI_Player(spillernavn,ourPlayers[i].getMoney(),cars[i]);
