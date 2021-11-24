@@ -1,5 +1,5 @@
 public class Account{
-    private int money=35;
+    private int money=15;
 
     public void setMoney(int money) {
         this.money += money;
@@ -9,9 +9,8 @@ public class Account{
         return money;
     }
 
-    public void transferMoney(int money, Player reciever, Player payer){
-        reciever.setMoney(money);
+    public void transferMoney(int money, Player receiver, Player payer){
+        receiver.setMoney(money);
         payer.setMoney(-money);
     }
-
 }
