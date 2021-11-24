@@ -2,6 +2,17 @@ public class Player {
     private Account account = new Account();
     private int square = 0;
     private boolean overGo;
+    private boolean inJail;
+    private String name;
+    private boolean waitATurn;
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     public void setMoney(int money) {
         account.setMoney(money);
@@ -11,12 +22,20 @@ public class Player {
         return account.getMoney();
     }
 
-    public void transferMoney(int money, Player reciever, Player payer) {
-        account.transferMoney(money, reciever, payer);
+    public void transferMoney(int money, Player receiver, Player payer) {
+        account.transferMoney(money, receiver, payer);
     }
 
-    public int moveToSquare(int dice1, int dice2) {
-        this.square += dice1 + dice2;
+    public boolean setWait(boolean trueOrFalse){
+        return waitATurn = trueOrFalse;
+    }
+
+    public boolean getWait(){
+        return waitATurn;
+    }
+
+    public int moveToSquare(int die1, int die2) {
+        this.square += die1 + die2;
 
         if (square > 23) {
             this.overGo = true;
@@ -26,42 +45,28 @@ public class Player {
         return square;
     }
 
-    public boolean checkOverGo() {
-        return this.overGo;
-    }
-
-    public boolean setOverGoFalse(){
-        this.overGo = false;
-        return this.overGo;
+    public int moveToHere(int where){
+        this.square = where;
+        return square;
     }
 
     public int getSquare() {
         return square;
     }
 
+    public boolean checkOverGo() {
+        return this.overGo;
+    }
 
-    //This test is to check if the player turns over the go field to
-    //recieve money
-    public static void main(String[] args) {
-        Player player = new Player();
+    public boolean setOverGoFalse(){
+        return this.overGo = false;
+    }
 
-        player.moveToSquare(13, 12);
-        System.out.println("Player's money right now: " + player.getMoney());
-        System.out.println("Player has overgone Go Field: " + player.checkOverGo());
+    public boolean setInJail(boolean falseOrTrue){
+        return inJail = falseOrTrue;
+    }
 
-        if(player.checkOverGo()==true){
-            player.setMoney(2);
-            player.setOverGoFalse();
-        }
-        System.out.println("Player's money right now: " + player.getMoney());
-
-
-        if(player.checkOverGo()==true){
-            player.setMoney(2);
-            player.setOverGoFalse();
-        }
-        System.out.println("Player has overgone Go Field: " + player.checkOverGo());
-        System.out.println("Player's money right now: " + player.getMoney());
-
+    public boolean getIsInJail() {
+        return inJail;
     }
 }
