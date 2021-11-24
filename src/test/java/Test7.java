@@ -1,8 +1,10 @@
 public class Test7 {
 
     public static void main(String[] args) {
-        Game game = new Game();
-
-        game.start();
+        GameBoard fields = new GameBoard();
+        fields.createFields();
+        fields.getField(1).setOwnerName("Hejse");
+        System.out.println(fields.getField(1).getOwnerName());
     }
+
 }
