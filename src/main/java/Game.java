@@ -1,6 +1,7 @@
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
 import java.awt.*;
+import java.util.Objects;
 
 public class Game {
     private GUI_Controller gui = new GUI_Controller();
@@ -45,6 +46,17 @@ public class Game {
 
         for(int i=0; i<numberOfPlayers; i++){
             String spillernavn = gui.getInstance().getUserString("Spiller " + (i+1) +", Indtast et navn");
+            if(i>0){
+                for (int j = 0; j < i; j++) {
+                    if (j==3){
+                        j = 4;
+                    }
+                    while(Objects.equals(spillernavn, ourPlayers[i - (j+1)].getName())) {
+                        gui.getInstance().showMessage("Du hedder det samme som spiller " + (i-j) + " venligst vaelg et andet navn");
+                        spillernavn = gui.getInstance().getUserString("Spiller " + (i+1) + ", Indtast et navn");
+                    }
+                }
+            }
             ourPlayers[i] = new Player();
             ourPlayers[i].setName(spillernavn);
             players[i] = new GUI_Player(spillernavn,ourPlayers[i].getMoney(),cars[i]);
