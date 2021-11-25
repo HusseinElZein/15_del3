@@ -6,5 +6,4 @@ public class Test6 {
         fields.getField(1).setOwnerName("Hejse");
         System.out.println(fields.getField(1).getOwnerName());
     }
-
 }
