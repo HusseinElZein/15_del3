@@ -68,7 +68,6 @@ public class Test9 {
     public static void main(String[] args) {
         Test9 test12 = new Test9();
 
-        //ourPlayers = new Player[2];
         ourPlayers[0] = new Player();
         ourPlayers[1] = new Player();
         ourPlayers[2] = new Player();
