@@ -15,7 +15,7 @@ public class Test3 {
         board = new GUI(fields);
 
         GUI_Car car = new GUI_Car(Color.red,Color.white, GUI_Car.Type.RACECAR, GUI_Car.Pattern.CHECKERED);
-        GUI_Player player = new GUI_Player("Yusuf", 1000, car);
+        GUI_Player player = new GUI_Player("HusseinTest", 1000, car);
         board.addPlayer(player);
         Dice dice = new  Dice();
         Player playerOurs = new Player();
