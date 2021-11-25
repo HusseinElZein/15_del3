@@ -1,88 +1,52 @@
-//this unit (TDD) test is testing a method inside Game. It is to ensure that
-//the system checks for the richest player in order to win.
-//Also in this test I'm (Hussein) trying to figure out how to make it work,
-//so that afterwards I can implement it.
-//And also the dilemma: What if there are two richest players?
-//That will mean that it is a draw between those two,
-//I know it is a stupid rule, but it is a junior, and juniors don't
-//like to stay out after going bankrupt for too long
+import java.util.Scanner;
+
+//This is a TDD test, in which I (Hussein) want to figure out how to
+//prevent players from naming themselves the same name.
 
 public class Test10 {
+    private static Player[] players = new Player[4];
+    private int numberOfPlayers = 4;
+    private boolean same;
 
-    private static Player[] ourPlayers = new Player[4];
-    private boolean gameEnded;
-    private boolean draw;
-    private Player winner2;
+    private boolean playerNamesAreSame(String name, int playerNumberYet) {
 
-    public void checkForLoser(Player ourPlayer){
-
-        ourPlayer.setMoney(-5);
-
-
-        if(ourPlayer.getMoney() <= 0) {
-            System.out.println(ourPlayer.getName() + " er gaaet bankerot");
-            gameEnded = true;
-        }
-    }
-
-    public void checkForWinner(Player player){
-
-        Player winner = player;
-
-        for(int i=0; i<ourPlayers.length; i++){
-
-            if(ourPlayers[i].getMoney() > winner.getMoney()){
-                winner = ourPlayers[i];
+        for (int i = 0; i < playerNumberYet; i++) {
+            if (!name.equals(players[i].getName())){
+                same = false;
             }
         }
-        checkIfDraw(winner);
-        if(draw != true) {
-            System.out.println(winner.getName() + " har vundet spillet! Hurra!");
-        }else if (draw == true){
-            System.out.println("Spillet er uafgjort mellem " + winner.getName() + " og " + winner2.getName());
-        }
-    }
-
-
-    public Player checkIfDraw(Player winner){
-
-        for(int i=0; i<ourPlayers.length; i++){
-
-            if(winner.getMoney() == ourPlayers[i].getMoney()){
-                if(winner != ourPlayers[i]) {
-                    winner2 = ourPlayers[i];
-                    draw = true;
-                }
+        for (int i = 0; i < playerNumberYet; i++) {
+            if (name.equals(players[i].getName())) {
+                same = true;
             }
         }
-        return winner2;
-    }
-
-    public void findWinnerIfLoser(Player player) {
-        checkForLoser(player);
-        if (gameEnded == true) {
-            checkForWinner(player);
-        }
+        return same;
     }
 
     public static void main(String[] args) {
-        Test10 test12 = new Test10();
+        Scanner sc = new Scanner(System.in);
+        Test10 test = new Test10();
 
-        //ourPlayers = new Player[2];
-        ourPlayers[0] = new Player();
-        ourPlayers[1] = new Player();
-        ourPlayers[2] = new Player();
-        ourPlayers[3] = new Player();
+        for (int i = 0; i < 4; i++) {
+            System.out.print("Navn til spiller " + (i + 1) + ": ");
+            String nameOfPlayer = sc.next();
 
-        ourPlayers[0].setName("player0");
-        ourPlayers[1].setName("player1");
-        ourPlayers[2].setName("player2");
-        ourPlayers[3].setName("player3");
+            players[i] = new Player();
+            players[i].setName(nameOfPlayer);
 
-        ourPlayers[1].setMoney(-3);
-        ourPlayers[2].setMoney(-3);
-        ourPlayers[3].setMoney(-2);
+            if (i > 0) {
 
-        test12.findWinnerIfLoser(ourPlayers[0]);
+                while(test.playerNamesAreSame(nameOfPlayer, i) == true) {
+                    System.out.print("Spiller " + (i+1) + ", navnet er allerede taget, skriv et nyt: ");
+                    nameOfPlayer = sc.next();
+                }
+                players[i].setName(nameOfPlayer);
+            }
+        }
+
+            for (int i = 0; i < 4; i++) {
+                System.out.println("Spiller " + (i + 1) + ": " + players[i].getName());
+            }
     }
 }
+

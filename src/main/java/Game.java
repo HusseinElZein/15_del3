@@ -129,6 +129,7 @@ public class Game {
         }
     }
 
+    //From class: Game
     public void buyOrRent(Player ourPlayers, GUI_Player players, GUI_Car car){
 
         int f = ourPlayers.getSquare();
