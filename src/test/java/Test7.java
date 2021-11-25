@@ -8,7 +8,6 @@ public class Test7 {
     //This test is to ensure that the transfer works
     //between an owner of a field and the player who lands on it
 
-
     public static void main(String[] args) {
 
         Player receiver = new Player();
@@ -22,28 +21,24 @@ public class Test7 {
         GUI_Player players = new GUI_Player("Name",receiver.getMoney(),car);
 
         receiver.moveToHere(1);
-        //fields.buyField(receiver,players,car);
+
+        System.out.println("Ejers penge før: " + receiver.getMoney());
+        System.out.println("spiller der lander's penge før: " + payer.getMoney());
 
         fields.setOwnerOfField(receiver.getSquare(),receiver, players);
 
-
         payer.moveToHere(1);
 
-
-        payer.transferMoney((-fields.getFieldRent(payer.getSquare())),
-                fields.getOwnerOfField(payer.getSquare()), payer);
-
-        payer.transferMoney((-fields.getFieldRent(payer.getSquare())),
-                fields.getOwnerOfField(payer.getSquare()), payer);
-
-        payer.transferMoney((-fields.getFieldRent(payer.getSquare())),
+        payer.transferMoney((fields.getFieldRent(payer.getSquare())),
                 fields.getOwnerOfField(payer.getSquare()), payer);
 
 
 
-        System.out.println(fields.getOwnerOfField(payer.getSquare()).getMoney());
+        System.out.println("betal: " + fields.getField(payer.getSquare()).getRent());
 
-        System.out.println(payer.getMoney());
+        System.out.println("ejerens penge: " + receiver.getMoney());
+
+        System.out.println("Betalerens penge: " + payer.getMoney());
 
 
 
