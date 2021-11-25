@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Test3 {
 
-    //This test is showing us how we can initialize one player, and move on a board
+    //This TDD test is showing us how we can initialize one player, and move on a board
     public void myFields(){
         GUI_Field[] fields = new GUI_Field[24];
         GUI board;
