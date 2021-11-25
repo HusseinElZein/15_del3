@@ -1,19 +1,15 @@
-public class Test2 {
+import static org.junit.jupiter.api.Assertions.*;
 
-    public static void main(String[] args) {
-        Player yusuf = new Player();
-        Player hussein = new Player();
+class Test2 {
 
-        System.out.println("Husseins penge: " + hussein.getMoney());
-        System.out.println("Yusufs penge: " + yusuf.getMoney());
+    @org.junit.jupiter.api.Test
+    void transferMoney() {
+        Player player1 = new Player();
+        Player player2 = new Player();
 
-        yusuf.transferMoney(1000,yusuf,hussein);
-        System.out.println("Husseins penge: " +hussein.getMoney());
-        System.out.println("Yusufs penge: " + yusuf.getMoney());
-        yusuf.transferMoney(1000,yusuf,hussein);
-        System.out.println("Husseins penge: " + hussein.getMoney());
-        System.out.println("Yusufs penge: "  +yusuf.getMoney());
+        player1.transferMoney(10,player2,player1);
+        assertEquals(5,player1.getMoney());
+        assertEquals(25,player2.getMoney());
 
     }
-
 }
