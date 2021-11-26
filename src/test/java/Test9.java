@@ -78,10 +78,10 @@ public class Test9 {
         ourPlayers[2].setName("player2");
         ourPlayers[3].setName("player3");
 
-        ourPlayers[1].setMoney(-3);
+        ourPlayers[1].setMoney(-16);
         ourPlayers[2].setMoney(-3);
         ourPlayers[3].setMoney(-2);
 
-        test12.findWinnerIfLoser(ourPlayers[0]);
+        test12.findWinnerIfLoser(ourPlayers[1]);
     }
 }
